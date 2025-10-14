@@ -34,91 +34,32 @@ const NavCard: React.FC<NavCardProps> = ({
   rightImageAlt,
   layoutType,
 }) => {
-  const isAuth = layoutType === "AUTH";
-
-  // Define the purple text color class
-  const purpleTextColor = "text-purple-900";
-
-  // Determine the card's background style (color or gradient)
-  const cardStyle = {
-    background: isAuth
-      ? cardBgColor
-      : `linear-gradient(to right, ${cardBgColor}, #a855f7)`,
-    borderColor: "#6d28d9", // Consistent purple border color
-    height: "240px", // Fixed height
-  };
-
   return (
-    <div
-      onClick={() => navigate(path)}
-      className="cursor-pointer rounded-2xl shadow-2xl overflow-hidden transform hover:scale-[1.01] transition duration-300 border-4 relative"
-      style={cardStyle}
-    >
-      <div className="flex items-center justify-between p-6 h-full w-full">
-        {/* ----------------- AUTH CARD CONTENT (Light Grey Card, Text Left, Image Right) ----------------- */}
-        {isAuth && (
-          <>
-            {/* Text Content */}
-            <div className="flex flex-col w-2/3 md:w-1/2">
-              <h2
-                className={`text-3xl sm:text-4xl font-extrabold tracking-tight ${purpleTextColor}`}
-              >
-                {title}
-              </h2>
-              <p
-                className={`text-lg sm:text-xl font-medium mt-2 opacity-90 leading-tight ${purpleTextColor}`}
-              >
-                {subtitle}
-              </p>
-            </div>
+    <div className="bg-gradient-to-r from-purple-600 to-purple-700 p-6 rounded-3xl shadow-2xl">
+      <div
+        onClick={() => navigate(path)}
+        className="cursor-pointer bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300"
+      >
+        <div className="flex items-center justify-between h-full">
+          {/* Text Content */}
+          <div className="flex flex-col flex-grow">
+            <h2 className="text-3xl sm:text-4xl font-bold text-purple-900 mb-2">
+              {title}
+            </h2>
+            <p className="text-lg text-purple-700 font-medium">
+              {subtitle}
+            </p>
+          </div>
 
-            {/* Right-side Image */}
-            <div className="w-1/3 sm:w-1/3 flex items-center justify-center flex-shrink-0 h-full">
-              <img
-                src={rightImageSrc}
-                alt={rightImageAlt}
-                className="max-w-full max-h-full object-contain"
-              />
-            </div>
-          </>
-        )}
-
-        {/* ----------------- ABOUT CARD CONTENT (Gradient Card, Two Images, Center Text) ----------------- */}
-        {!isAuth && (
-          <>
-            {/* Left Image */}
-            <div className="w-1/4 flex-shrink-0 flex items-center justify-center h-full">
-              {leftImageSrc && leftImageAlt && (
-                <img
-                  src={leftImageSrc}
-                  alt={leftImageAlt}
-                  className="max-w-full max-h-full object-contain"
-                />
-              )}
-            </div>
-
-            {/* Central Text Content */}
-            <div className="flex flex-col text-center flex-grow mx-4">
-              <h2
-                className={`text-3xl sm:text-4xl font-extrabold tracking-tight leading-none text-white`}
-              >
-                {title}
-              </h2>
-              <p className={`text-lg font-medium mt-1 opacity-90 text-white`}>
-                {subtitle}
-              </p>
-            </div>
-
-            {/* Right Image */}
-            <div className="w-1/4 flex-shrink-0 flex items-center justify-center h-full">
-              <img
-                src={rightImageSrc}
-                alt={rightImageAlt}
-                className="max-w-full max-h-full object-contain"
-              />
-            </div>
-          </>
-        )}
+          {/* Image */}
+          <div className="w-24 h-24 flex items-center justify-center flex-shrink-0 ml-6">
+            <img
+              src={rightImageSrc}
+              alt={rightImageAlt}
+              className="max-w-full max-h-full object-contain"
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -128,18 +69,17 @@ const HomePage: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    //  <-- ONLY CHANGE: Set background to white
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-purple-800 to-indigo-900">
       <Header />
 
-      <main className="max-w-4xl mx-auto py-10 px-4 space-y-6">
+      <main className="max-w-4xl mx-auto py-10 px-4 space-y-8">
         {/* 1. AUTHENTICATION CARD */}
         <NavCard
           title="AUTHENTICATION PAGE"
           subtitle="SECURE LOGIN PROTECTED ACCESS"
           path="/auth"
           navigate={navigate}
-          cardBgColor="#e0e0e0" // Light grey background for the card
+          cardBgColor="#ffffff" // White background for the card
           layoutType="AUTH"
           rightImageSrc="/images/AuthCard.PNG"
           rightImageAlt="Secure Login Authentication Graphic"
@@ -151,7 +91,7 @@ const HomePage: React.FC = () => {
           subtitle="Tutor-Student Relations Management System"
           path="/about"
           navigate={navigate}
-          cardBgColor="#9333ea" // Start color of the gradient for the card background
+          cardBgColor="#ffffff" // White background for the card
           layoutType="ABOUT"
           leftImageSrc="/images/AboutCard.PNG"
           leftImageAlt="Learning Graphic"

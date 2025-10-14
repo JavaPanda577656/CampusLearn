@@ -1,83 +1,88 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { FiMail, FiLock, FiUserPlus, FiCheck } from "react-icons/fi";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 const AuthRegistrationForm: React.FC = () => {
   const navigate = useNavigate();
 
-  const mainPurple = "#4C1D95";
-  const lightPurpleBg = "#EDE9FE";
-
   return (
-    // CONTAINER FIX: Use flex-col to push content up and footer down
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-purple-800 to-indigo-900 flex flex-col">
       <Header />
 
-      {/* Main content area: flex-grow allows this section to fill all available space */}
       <main className="w-full py-8 px-4 flex-grow">
-        {/* Inner container to control max width of content and center the form */}
         <div className="max-w-6xl mx-auto w-full">
-          {/* TOP NAVIGATION BLOCK (FLUSHED LEFT) */}
-          <div className="space-y-4 mb-10 md:mb-16">
-            {/* Breadcrumb/Navigation Info */}
-            <div className="text-sm text-gray-500">
+          {/* TOP NAVIGATION BLOCK */}
+          <div className="space-y-4 mb-10">
+            <div className="text-sm text-purple-200">
               Home/Authentication/RegistrationPortal
             </div>
 
-            {/* Back Button - Flushed to the left edge */}
             <button
               onClick={() => navigate("/auth")}
-              className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition shadow-md"
+              className="flex items-center gap-2 px-6 py-3 bg-white text-purple-700 rounded-xl font-semibold hover:bg-gray-50 transition-all duration-300 shadow-lg"
             >
               <span className="text-lg">←</span>
-              <span className="font-medium">Authentication</span>
+              <span>Authentication</span>
             </button>
           </div>
 
-          {/* FORM CONTAINER - Center the form itself */}
+          {/* FORM CONTAINER */}
           <div className="flex justify-center w-full">
-            <div
-              className="rounded-xl shadow-2xl p-8 sm:p-12 space-y-8 flex flex-col items-center border border-purple-300"
-              style={{
-                backgroundColor: lightPurpleBg,
-                maxWidth: "500px",
-                width: "100%",
-              }}
-            >
-              <h3
-                className="text-2xl font-bold text-center"
-                style={{ color: mainPurple }}
-              >
-                Registration Portal
-              </h3>
+            <div className="bg-gradient-to-r from-purple-600 to-purple-700 p-6 rounded-3xl shadow-2xl max-w-md w-full">
+              <div className="bg-white rounded-2xl p-8 space-y-6">
+                <div className="text-center mb-8">
+                  <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <FiUserPlus className="text-purple-600 text-2xl" />
+                  </div>
+                  <h3 className="text-3xl font-bold text-purple-900 mb-2">
+                    REGISTRATION
+                  </h3>
+                  <p className="text-purple-700 font-medium">
+                    Campus Learn
+                  </p>
+                </div>
 
-              <div className="space-y-6 w-full">
-                {/* TEXT FIELDS */}
-                <input
-                  type="email"
-                  placeholder="Enter Email"
-                  className="w-full p-3 rounded-lg border border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-700 text-gray-700"
-                />
-                <input
-                  type="password"
-                  placeholder="Enter Password"
-                  className="w-full p-3 rounded-lg border border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-700 text-gray-700"
-                />
+                <div className="space-y-4">
+                  <div className="relative">
+                    <FiMail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-purple-400 text-xl" />
+                    <input
+                      type="email"
+                      placeholder="Enter Email"
+                      className="w-full p-4 pl-12 rounded-xl border-2 border-purple-200 focus:outline-none focus:border-purple-500 text-gray-700 font-medium"
+                    />
+                  </div>
+                  <div className="relative">
+                    <FiLock className="absolute left-4 top-1/2 transform -translate-y-1/2 text-purple-400 text-xl" />
+                    <input
+                      type="password"
+                      placeholder="Enter Password"
+                      className="w-full p-4 pl-12 rounded-xl border-2 border-purple-200 focus:outline-none focus:border-purple-500 text-gray-700 font-medium"
+                    />
+                  </div>
+                  <div className="relative">
+                    <FiCheck className="absolute left-4 top-1/2 transform -translate-y-1/2 text-purple-400 text-xl" />
+                    <input
+                      type="password"
+                      placeholder="Confirm Password"
+                      className="w-full p-4 pl-12 rounded-xl border-2 border-purple-200 focus:outline-none focus:border-purple-500 text-gray-700 font-medium"
+                    />
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full py-4 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-xl font-bold text-lg hover:from-purple-700 hover:to-purple-800 transition-all duration-300 shadow-lg"
+                >
+                  Register
+                </button>
               </div>
-
-              <button
-                type="submit"
-                className="w-2/3 py-3 bg-purple-800 text-white rounded-lg font-semibold hover:bg-purple-900 transition shadow-md"
-              >
-                Register
-              </button>
             </div>
           </div>
         </div>
       </main>
 
-      {/* FOOTER: Pushed to the very bottom */}
       <Footer />
     </div>
   );
